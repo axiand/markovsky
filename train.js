@@ -4,12 +4,12 @@ const { Model } = require("./lib/Model")
 
 const LEN_SEP = cfgSeparator.length
 
-let corpusSize = statSync("./data/corpus.txt").size
-
 let readStream = createReadStream("./data/corpus.txt", { encoding: "utf-8", highWaterMark: 1024 * 8 })
-
 let currentRead = ""
+
 let model = new Model()
+
+let corpusSize = statSync("./data/corpus.txt").size
 
 let totalCursor = 0
 let totalWeights = 0

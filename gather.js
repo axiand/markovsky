@@ -14,7 +14,7 @@ const COLL = "app.bsky.feed.post"
 const CURSOR = Math.floor((new Date(Date.now()).getTime() - (1000 * 60 * 60 * 24 * cfgBackDays)) * 1000)
 const JETSTREAM_URL = `wss://jetstream.atproto.tools/subscribe?wantedCollections=${COLL}&cursor=${CURSOR}`
 const LINK_RGX = new RegExp(/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi)
-const CLEAN_RGX = new RegExp(/[^\w\s]/gi)
+//const CLEAN_RGX = new RegExp(/[^\w\s]/gi)
 
 let totalPosts = 0
 let writtenPosts = 0
