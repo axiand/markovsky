@@ -20,7 +20,7 @@ let totalPosts = 0
 let writtenPosts = 0
 
 let langAssertion = cfgStrictLangMode ?
-    (la) => { return la[0] == cfgStrictLang }
+    (la) => { return la[0] == cfgStrictLang && la.length == 1 }
     :
     (la) => { return includesAny(la, cfgAllowedLangs) }
 
