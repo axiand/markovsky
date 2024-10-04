@@ -36,7 +36,12 @@ readStream.on('data', (chunk) => {
         totalCursor++
 
         if (currentRead.endsWith(cfgSeparator)) {
-            ingestPart(currentRead.toLowerCase().slice(0, currentRead.length - LEN_SEP))
+            ingestPart(
+                currentRead
+                    .toLowerCase()
+                    .slice(0, currentRead.length - LEN_SEP)
+                    .replace(/\|/g, "")
+            )
             totalParts++
             currentRead = ""
         }
@@ -47,14 +52,15 @@ readStream.on('end', () => {
     logProgress()
     clearTimeout(logRoutine)
     console.log("Rendering weights...")
-    model.renderWeights()
+    model.renderWeights(true) // encode for writing
     console.log("Training finished.")
+    model.writeWeights()
+    console.log("All done!")
+    model.renderWeights(false) // decode for test string output
     console.log("Have 10 samples of strings:")
     for (i = 0; i < 10; i++) {
         console.log("Here's a string: ", model.getString())
     }
-    model.writeWeights()
-    console.log("File written; all done!")
 })
 
 function logProgress() {
