@@ -5,6 +5,8 @@
     "cfgStrictLang": "en",
     "cfgStrictLangMode": true,
     "cfgBackDays": 1,
-    "cfgMinLength": 8,
-    "cfgSeparator": " <|END|> "
+    "cfgMinLength": 16,
+    "cfgSeparator": " <|END|> ",
+    "cfgAdditionalFiltering": true,
+    "cfgExcludeTags": true
 }

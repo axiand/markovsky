@@ -6,7 +6,9 @@ const {
     cfgSeparator,
     cfgStrictLang,
     cfgStrictLangMode,
-    cfgMinLength
+    cfgMinLength,
+    cfgAdditionalFiltering,
+    cfgExcludeTags
 } = require("./cfg.json")
 
 const COLL = "app.bsky.feed.post"
@@ -14,7 +16,7 @@ const COLL = "app.bsky.feed.post"
 const CURSOR = Math.floor((new Date(Date.now()).getTime() - (1000 * 60 * 60 * 24 * cfgBackDays)) * 1000)
 const JETSTREAM_URL = `wss://jetstream.atproto.tools/subscribe?wantedCollections=${COLL}&cursor=${CURSOR}`
 const LINK_RGX = new RegExp(/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi)
-//const CLEAN_RGX = new RegExp(/[^\w\s]/gi)
+const ENG_RGX = new RegExp(/(?:(?!\p{Emoji}|\p{EComp})[À-῾Ⱡ-ﻼ])+/u)
 
 let totalPosts = 0
 let writtenPosts = 0
@@ -43,11 +45,11 @@ let con = new WebSocket(JETSTREAM_URL)
 con.on("message", (data) => {
     let commit = JSON.parse(data).commit
 
+    // jetstream always serves acct/identity events so not everything is a commit
+    if (commit == undefined) return
+
     // we only want creates
     if (commit.type != "c") return
-
-    // jetstream always serves acct/identity events so filter that out too
-    if (commit.collection != COLL) return
 
     let recd = commit.record
     totalPosts++
@@ -58,10 +60,10 @@ con.on("message", (data) => {
     let rtext = recd.text
     if (rtext.length < cfgMinLength) return;
     if (rtext.includes(cfgSeparator)) return;
-    if (rtext.includes("<|>")) return;
-    if (rtext.includes("||")) return;
-    if (rtext.includes("<|START|>")) return;
+    if (rtext.includes("|")) return;
     if (rtext.match(LINK_RGX)) return;
+    if (cfgAdditionalFiltering && rtext.match(ENG_RGX)) return;
+    if (cfgExcludeTags && rtext.includes("#")) return;
     //rtext = rtext.trim()
 
     // now we can write!

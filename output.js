@@ -1,7 +1,7 @@
 const { Model } = require('./lib/Model')
 
 function onLoad() {
-    for (i = 0; i < 24; i++) {
+    for (i = 0; i < 64; i++) {
         console.log(model.getString())
         console.log("--\n")
     }

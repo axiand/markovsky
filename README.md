@@ -32,6 +32,11 @@ Scraper config is located in the `cfg.json` file. Notable values are:
 - `BackDays` is how far back the firehose cursor should be set in days. Setting a firehose cursor in the past is helpful as it will fetch many older posts as quickly as your network/processor can handle
 - `MinLength` controls how long posts need to be to be included in the dataset. Excluding very short posts may help reduce garbage in the final model.
 - `Separator` controls the separator in the dataset file. I strongly discourage messing with this as it may break things
+- `AdditionalFiltering` controls whether to do additional language filtering on posts
+- - Bluesky's builtin language detection is unfortunately quite incompetent, so a lot of posts sneak in that are not written in the desired language. This option exists to hopefully make the dataset cleaner by detecting accented characters and non-Latin scripts.
+- - Disable if you're not building an English-only model, otherwise it's recommended you keep it enabled.
+- `ExcludeTags` excludes posts with hashtags if enabled
+- - This option exists if you want to avoid annoying feed owners and people searching for tags (which is recommended).
 
 ### Bluesky config
 Markovsky pulls your credentials from two environment variables:

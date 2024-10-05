@@ -40,7 +40,6 @@ readStream.on('data', (chunk) => {
                 currentRead
                     .toLowerCase()
                     .slice(0, currentRead.length - LEN_SEP)
-                    .replace(/\|/g, "")
             )
             totalParts++
             currentRead = ""
