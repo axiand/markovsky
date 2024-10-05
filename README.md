@@ -46,7 +46,7 @@ Once you've published at least once, your credentials are cached at `/data/authS
 No, it's a [Markov chain](https://en.wikipedia.org/wiki/Markov_chain). Calling a markov chain AI would be like calling a spool of string a carpet.
 
 ### Q: I have concerns about scraping.
-Markovsky discards any metadata about posts other than the text content. The dataset does not store any data that could be used to identify you as the author of any particular post. It's worth noting that the nature of the AT Protocol means all of your posts are public.
+Markovsky discards any metadata about posts other than the text content. The dataset does not contain any data that identifies you as the author of a post. It's worth noting that the nature of the AT Protocol means all of your posts are public and can be easily indexed; be mindful of the information you choose to share in public spaces.
 
 ### Q: Will it support multiple models?
 Maybe! Right now the only valid model name is `model`, but you could probably plug-and-play models with some file renaming shenanigans.
