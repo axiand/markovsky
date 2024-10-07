@@ -1,5 +1,6 @@
 import { XRPC, CredentialManager } from '@atcute/client'
 import { writeFileSync, readFileSync } from 'node:fs'
+import { join } from 'path'
 import { Model } from './lib/Model.js'
 const bskyPwd = process.env.MARKOVSKY_PWD
 const bskyLogin = process.env.MARKOVSKY_LOGIN
@@ -9,7 +10,7 @@ let rpc
 let model
 
 try {
-    let rawjson = readFileSync("./data/authState.json", "utf-8")
+    let rawjson = readFileSync(join(__dirname, "/data/authState.json"), "utf-8")
     authState = JSON.parse(rawjson)
 } catch (e) {
     console.log("no auth state file; it will be created on successful login")
@@ -57,7 +58,7 @@ async function main() {
 
     await buildSession()
 
-    writeFileSync("./data/authState.json", JSON.stringify(mgr.session))
+    writeFileSync(join(__dirname, "/data/authState.json"), JSON.stringify(mgr.session))
 
     model.loadWeights("model", createPost)
 }

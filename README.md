@@ -8,7 +8,7 @@ Markovsky is tested with Node.js version 22.8.0, I cannot guarantee that anythin
 
 1. `git clone` this repository.
 - Run `pnpm i` to install packages - this project is mostly dependencyless so it should only take a second
-2. Point your terminal at the newly cloned directory (note: you must always do this before running any scripts)
+2. Point your terminal at the newly cloned directory
 3. To gather the dataset: `node gather.js`
 - Press Ctrl+C to stop execution once you're satisfied with the dataset size.
 - See the configuring section to learn how to tune the dataset filters.

@@ -1,5 +1,6 @@
 const { WebSocket } = require("ws")
 const { createWriteStream } = require("node:fs")
+const { join } = require("path")
 const {
     cfgAllowedLangs,
     cfgBackDays,
@@ -27,7 +28,7 @@ let langAssertion = cfgStrictLangMode ?
     (la) => { return includesAny(la, cfgAllowedLangs) }
 
 // fs.WriteStream extends Stream.Writable
-let writeStream = createWriteStream("./data/corpus.txt")
+let writeStream = createWriteStream(join(__dirname, "/data/corpus.txt"))
 
 // bool includesAny(Array, Array)
 function includesAny(who, what) {

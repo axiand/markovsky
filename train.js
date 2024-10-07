@@ -1,15 +1,16 @@
 const { createReadStream, statSync } = require("node:fs")
 const { cfgSeparator } = require("./cfg.json")
 const { Model } = require("./lib/Model")
+const { join } = require("path")
 
 const LEN_SEP = cfgSeparator.length
 
-let readStream = createReadStream("./data/corpus.txt", { encoding: "utf-8", highWaterMark: 1024 * 8 })
+let readStream = createReadStream(join(__dirname, "/data/corpus.txt"), { encoding: "utf-8", highWaterMark: 1024 * 8 })
 let currentRead = ""
 
 let model = new Model()
 
-let corpusSize = statSync("./data/corpus.txt").size
+let corpusSize = statSync(join(__dirname, "/data/corpus.txt")).size
 
 let totalCursor = 0
 let totalWeights = 0
