@@ -1,9 +1,13 @@
 import { XRPC, CredentialManager } from '@atcute/client'
 import { writeFileSync, readFileSync } from 'node:fs'
-import { join } from 'path'
+import { fileURLToPath } from 'url'
+import { join, dirname } from 'path'
 import { Model } from './lib/Model.js'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
 const bskyPwd = process.env.MARKOVSKY_PWD
 const bskyLogin = process.env.MARKOVSKY_LOGIN
+
 let authState
 let mgr
 let rpc
