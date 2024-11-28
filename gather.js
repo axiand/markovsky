@@ -44,13 +44,14 @@ function includesAny(who, what) {
 let con = new WebSocket(JETSTREAM_URL)
 
 con.on("message", (data) => {
+	//console.log(JSON.parse(data))
     let commit = JSON.parse(data).commit
 
     // jetstream always serves acct/identity events so not everything is a commit
     if (commit == undefined) return
 
     // we only want creates
-    if (commit.type != "c") return
+    if (commit.operation != "create") return
 
     let recd = commit.record
     totalPosts++
