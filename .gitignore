@@ -3,3 +3,5 @@ pnpm-lock.yaml
 data
 test.txt
 .env
+bigdump
+package-lock.json

@@ -1,6 +1,8 @@
 # markovsky
 Toolkit for setting up a bluesky bot that posts automatically from a markov chain
 
+This is an alternate branch for testing out media scraping. Do not use, see `main` instead.
+
 ## Guide
 Markovsky comes in the form of a handful of scripts that you run in order to perform tasks with the bot.
 

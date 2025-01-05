@@ -1,6 +1,7 @@
 {
 	"dependencies": {
 		"@atcute/client": "^2.0.3",
+		"node-fetch": "^2.7.0",
 		"ws": "^8.18.0"
 	},
 	"packageManager": "pnpm@9.9.0+sha1.3edbe440f4e570aa8f049adbd06b9483d55cc2d2"
