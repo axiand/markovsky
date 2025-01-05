@@ -3,3 +3,4 @@ pnpm-lock.yaml
 data
 test.txt
 .env
+package-lock.json
