@@ -37,6 +37,7 @@ Scraper config is located in the `cfg.json` file. Notable values are:
 - - Disable if you're not building an English-only model, otherwise it's recommended you keep it enabled.
 - `ExcludeTags` excludes posts with hashtags if enabled
 - - This option exists if you want to avoid annoying feed owners and people searching for tags (which is recommended).
+- `FilteredKeywords` is an array of keywords that should be rejected from the dataset. Some defaults are included in the config file for you to copy over if you'd like.
 
 ### Bluesky config
 Markovsky pulls your credentials from two environment variables:
