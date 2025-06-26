@@ -8,5 +8,13 @@
     "cfgMinLength": 16,
     "cfgSeparator": " <|END|> ",
     "cfgAdditionalFiltering": true,
-    "cfgExcludeTags": true
+    "cfgExcludeTags": true,
+	
+	"_comment": "Some predefined banned keywords. For my own convenience, but feel free to copy them.",
+	"cfgFilteredKeywords_spam": ["macro:", "wordle"],
+	"cfgFilteredKeywords_politics": ["trump", "israel", "iran", "otus", "maga", "elon", "amendment", "constitution", "fascism", "fascist", "democrat", "republic", "senate", "mayor", "dems", "conservative", "fox news", "cnn", "rfk", "gop", "ny times", "nyt", "governor", "government", "supreme court", "taylor-greene", "mtg", "rubio", "deport", "fafo"],
+	"cfgFilteredKeywords_abuse": ["nigg", "fag", "kys", "kill u", "kill y"],
+	"_comment": "-- end predefined keywords --",
+	
+	"cfgFilteredKeywords": []
 }

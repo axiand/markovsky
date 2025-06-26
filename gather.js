@@ -9,7 +9,8 @@ const {
     cfgStrictLangMode,
     cfgMinLength,
     cfgAdditionalFiltering,
-    cfgExcludeTags
+    cfgExcludeTags,
+	cfgFilteredKeywords
 } = require("./cfg.json")
 
 const COLL = "app.bsky.feed.post"
@@ -21,6 +22,7 @@ const ENG_RGX = new RegExp(/(?:(?!\p{Emoji}|\p{EComp})[À-῾Ⱡ-ﻼ])+/u)
 
 let totalPosts = 0
 let writtenPosts = 0
+let filteredPosts = 0
 
 let langAssertion = cfgStrictLangMode ?
     (la) => { return la[0] == cfgStrictLang && la.length == 1 }
@@ -66,6 +68,7 @@ con.on("message", (data) => {
     if (rtext.match(LINK_RGX)) return;
     if (cfgAdditionalFiltering && rtext.match(ENG_RGX)) return;
     if (cfgExcludeTags && rtext.includes("#")) return;
+	if (includesAny(rtext.toLowerCase(), cfgFilteredKeywords)) return filteredPosts++; // apply keyword filter
     //rtext = rtext.trim()
 
     // now we can write!
@@ -74,6 +77,6 @@ con.on("message", (data) => {
 })
 
 const logRoutine = setInterval(() => {
-    let t = `Posts written: ${writtenPosts.toLocaleString()} // Total seen posts: ${totalPosts.toLocaleString()}`
+    let t = `Posts written: ${writtenPosts.toLocaleString()} // Total seen posts: ${totalPosts.toLocaleString()} // Rejected posts: ${filteredPosts.toLocaleString()}`
     console.log(t)
 }, 1000)
