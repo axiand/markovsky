@@ -69,7 +69,9 @@ con.on("message", (data) => {
     if (cfgAdditionalFiltering && rtext.match(ENG_RGX)) return;
     if (cfgExcludeTags && rtext.includes("#")) return;
 	if (includesAny(rtext.toLowerCase(), cfgFilteredKeywords)) return filteredPosts++; // apply keyword filter
-    //rtext = rtext.trim()
+    rtext = rtext
+	.replace(/\n+/gm, " ")
+	.replace(/[\p{Pf}\p{Pi}"]/gu, '') // some rudimentary cleanup because newlines and quotes create a lot of noise in the model
 
     // now we can write!
     writtenPosts++
